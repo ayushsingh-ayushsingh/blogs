@@ -1,0 +1,174 @@
+@import '@fontsource-variable/inter' layer(base);
+@import '@fontsource-variable/newsreader' layer(base);
+@import '@fontsource-variable/newsreader/wght-italic.css' layer(base);
+
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar:hover {
+    cursor: grab !important;
+}
+
+::-webkit-scrollbar:active {
+    cursor: grabbing;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: --alpha(var(--color-neutral-500) / 35%);
+    border-radius: var(--radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: --alpha(var(--color-neutral-500) / 75%);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+    background-color: --alpha(var(--color-neutral-500) / 15%);
+    border-radius: var(--radius);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+    background-color: --alpha(var(--color-neutral-500) / 45%);
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::selection {
+    background-color: --alpha(var(--color-emerald-400) / 50%) !important;
+    color: --alpha(var(--color-emerald-950) / 100%) !important;
+}
+
+html.dark ::selection {
+    background-color: --alpha(var(--color-emerald-400) / 50%) !important;
+    color: --alpha(var(--color-amber-50) / 100%) !important;
+}
+
+.astro-code {
+    border-radius: 0px !important;
+}
+
+.astro-code ::selection {
+    background-color: --alpha(var(--color-neutral-400) / 50%) !important;
+    color: var(--color-neutral-200) !important;
+}
+
+/* dim on hover with smooth transition */
+img {
+    transition: filter 500ms ease;
+}
+
+@media (min-width: 768px) {
+    img {
+        width: calc(100% + 96px);
+        max-width: calc(100% + 96px);
+        margin-left: -48px;
+        margin-right: -48px;
+    }
+}
+
+html.dark img {
+    filter: brightness(0.8);
+}
+
+/*:root {
+    --text-main: #171717;
+    --bg-main: #f2f1ec;
+    --bg-muted: #eae9e1;
+    --border-main: #171717;
+}
+
+html.dark {
+    --text-main: #f2f1ec;
+    --bg-main: #171717;
+    --bg-muted: #242424;
+    --border-main: #f2f1ec;
+}*/
+
+:root {
+    --text-main: #162a2b;
+    --bg-main: #d6e0e2;
+    --bg-muted: #ccd8db;
+    --border-main: #162a2b;
+}
+
+html.dark {
+    --text-main: #d6e0e2;
+    --bg-main: #162a2b;
+    --bg-muted: #1c3537;
+    --border-main: #d6e0e2;
+}
+
+/*:root {
+    --text-main: #3a4238;
+    --bg-main: #f3efe6;
+    --bg-muted: #eee9dc;
+    --border-main: #3a4238;
+}
+html.dark {
+    --text-main: #f3efe6;
+    --bg-main: #5e6c5b;
+    --bg-muted: #596756;
+    --border-main: #f3efe6;
+}*/
+
+@theme inline {
+    --font-sans: 'Inter Variable', sans-serif;
+    --font-serif: 'Newsreader Variable', serif;
+    --text-color-main: var(--text-main);
+    --background-color-main: var(--bg-main);
+    --background-color-muted: var(--bg-muted);
+    --border-color-main: var(--border-main);
+}
+
+@layer utilities {
+    .prose {
+        --tw-prose-body: var(--text-color-main);
+        --tw-prose-headings: var(--text-color-main);
+        --tw-prose-lead: var(--text-color-main);
+        --tw-prose-links: var(--text-color-main);
+        --tw-prose-bold: var(--text-color-main);
+        --tw-prose-counters: var(--text-color-main);
+        --tw-prose-bullets: var(--text-color-main);
+        --tw-prose-hr: var(--border-color-main);
+        --tw-prose-quotes: var(--text-color-main);
+        --tw-prose-quote-borders: var(--border-color-main);
+        --tw-prose-captions: var(--text-color-main);
+        --tw-prose-kbd: var(--text-color-main);
+        --tw-prose-code: var(--text-color-main);
+        --tw-prose-th-borders: var(--border-color-main);
+        --tw-prose-td-borders: var(--border-color-main);
+    }
+
+    .prose a {
+        @apply font-normal underline decoration-dashed decoration-1 underline-offset-2 hover:decoration-solid;
+    }
+
+    .prose :where(h1, h2, h3, h4, h5, h6) {
+        @apply font-serif font-medium;
+    }
+
+    .prose :where(code, strong) {
+        @apply font-medium;
+    }
+
+    .prose blockquote {
+        @apply border-none pl-0 font-serif text-[1.375em] leading-snug font-normal italic sm:text-[1.66667em];
+    }
+}

@@ -1,0 +1,25 @@
+---
+import type { GetStaticPathsOptions, Page } from 'astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Pagination from '../../components/Pagination.astro';
+import siteConfig from '../../data/site-config';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sortItemsByDateDesc } from '../../utils/data-utils';
+import StoryPreview from '../../components/StoryPreview.astro';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const stories = (await getCollection('stories')).sort(sortItemsByDateDesc);
+    return paginate(stories, { pageSize: siteConfig.storiesPerPage || 5 });
+}
+
+type Props = { page: Page<CollectionEntry<'stories'>> };
+
+const { page } = Astro.props;
+const portfolio = page.data;
+---
+
+<BaseLayout title="Portfolio" description="Explore a diverse portfolio showcasing my passion" showHeader={false}>
+    <h1 class="mb-12 font-serif text-2xl leading-tight italic sm:mb-16 sm:text-4xl">Stories</h1>
+    {portfolio.map((project) => <StoryPreview story={project} class="mb-10 sm:mb-12" />)}
+    <Pagination page={page} class="my-16 sm:my-24" />
+</BaseLayout>

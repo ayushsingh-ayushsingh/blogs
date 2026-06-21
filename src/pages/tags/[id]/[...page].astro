@@ -1,0 +1,59 @@
+---
+import type { GetStaticPathsOptions, Page } from 'astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Pagination from '../../../components/Pagination.astro';
+import PostPreview from '../../../components/PostPreview.astro';
+import ProjectPreview from '../../../components/ProjectPreview.astro';
+import StoryPreview from '../../../components/StoryPreview.astro';
+import Subscribe from '../../../components/Subscribe.astro';
+import siteConfig from '../../../data/site-config';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getAllTags, getPostsByTag, sortItemsByDateDesc } from '../../../utils/data-utils';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const blogs = await getCollection('blogs');
+    const projects = await getCollection('projects');
+    const stories = await getCollection('stories');
+    const posts = [...blogs, ...projects, ...stories].sort(sortItemsByDateDesc);
+    const tags = getAllTags(posts);
+
+    return tags.flatMap((tag) => {
+        const filteredPosts = getPostsByTag(posts, tag.id);
+        return paginate(filteredPosts, {
+            params: { id: tag.id },
+            pageSize: siteConfig.postsPerPage || 4
+        });
+    });
+}
+
+type Props = { page: Page<CollectionEntry<'blogs' | 'projects' | 'stories'>> };
+
+const { page } = Astro.props;
+const params = Astro.params;
+const blogsList = await getCollection('blogs');
+const projectsList = await getCollection('projects');
+const storiesList = await getCollection('stories');
+const allPosts = [...blogsList, ...projectsList, ...storiesList];
+const allTags = getAllTags(allPosts);
+const currentTag = allTags.find((tag) => {
+    return tag.id === params.id;
+});
+---
+
+<BaseLayout title={`Tagged ${currentTag?.name}`} description={`Explore a curated collection of posts under ${currentTag?.name}`} showHeader={false}>
+    <h1 class="mb-12 font-serif text-2xl leading-tight italic sm:mb-16 sm:text-4xl">Posts Tagged "{currentTag?.name}"</h1>
+    {
+        page.data.map((item) => {
+            if (item.collection === 'projects') {
+                return <ProjectPreview project={item} class="mb-10 sm:mb-12" />;
+            } else if (item.collection === 'stories') {
+                return <StoryPreview story={item} class="mb-10 sm:mb-12" />;
+            } else {
+                return <PostPreview post={item} class="mb-10 sm:mb-12" />;
+            }
+        })
+    }
+    <Pagination page={page} class="my-16 sm:my-24" />
+    <Subscribe class="my-16 sm:my-24" />
+</BaseLayout>
+
