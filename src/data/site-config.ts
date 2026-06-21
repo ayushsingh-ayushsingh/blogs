@@ -76,7 +76,7 @@ const siteConfig: SiteConfig = {
     // ],
     hero: {
         title: 'Welcome to My Corner!',
-        text: "I'm **Ayush Singh**, a full-stack developer based in Bhopal, India. My approach involves embracing intuition, conducting deep dives, and leveraging aesthetics.<br/></br>Feel free to explore some of my coding endeavors on [GitHub](https://github.com/ayushsingh-ayushsingh) or write a [Mail](mailto:ayushpno@gmail.com).",
+        text: "I'm **Ayush Singh**, a Full-Stack developer based in Bhopal, India. My approach involves embracing intuition, conducting deep dives, and leveraging aesthetics.<br/></br>Feel free to explore some of my coding endeavors on [GitHub](https://github.com/ayushsingh-ayushsingh) or write a [Mail](mailto:ayushpno@gmail.com).",
         image: {
             src: hero,
             alt: 'A person sitting at a desk in front of a computer'

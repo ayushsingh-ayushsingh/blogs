@@ -65,16 +65,13 @@ html.dark ::selection {
 
 .astro-code {
     border-radius: 0px !important;
+    max-height: 80vh !important;
+    height: full;
 }
 
 .astro-code ::selection {
-    background-color: --alpha(var(--color-neutral-400) / 50%) !important;
-    color: var(--color-neutral-200) !important;
-}
-
-/* dim on hover with smooth transition */
-img {
-    transition: filter 500ms ease;
+    background-color: --alpha(var(--color-emerald-400) / 50%) !important;
+    color: var(--color-emerald-100) !important;
 }
 
 @media (min-width: 768px) {
@@ -84,10 +81,6 @@ img {
         margin-left: -48px;
         margin-right: -48px;
     }
-}
-
-html.dark img {
-    filter: brightness(0.8);
 }
 
 /*:root {
