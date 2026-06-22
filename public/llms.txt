@@ -1,9 +1,24 @@
-# This is a blog page by Ayush Singh
+# AyushThinks
 
-Github: https://github.com/ayushsingh-ayushsingh
-Email: ayushpno@gmail.com
+> I always wanted to create content, not because I wanted to be read but because I wanted to force myself to create to force myself to 'think', I think of myself as a creative person and this is the platform now.
 
-Visit:
-/blogs
-/projects
-/stories
+This is not going to be just about blogs, wait for art, programming and music related content.
+
+## Find me at
+
+- [Github](https://github.com/ayushsingh-ayushsingh)
+- [Email](mailto:ayushpno@gmail.com)
+
+## Content
+
+### Ayush writes blogs
+
+- [Blogs](https://ayushthinks.pages.dev/blogs)
+
+### He tries to write stories too...
+
+- [Stories](https://ayushthinks.pages.dev/stories)
+
+### And he has some projects too...
+
+- [Projects](https://ayushthinks.pages.dev/projects)

@@ -24,6 +24,19 @@ const { title, image, text, actions } = Astro.props;
                         loading="eager"
                     />
                     {image.caption && <figcaption class="mt-1.5 text-xs sm:text-sm">{image.caption}</figcaption>}
+                    <center class="mt-4">
+                        <small>
+                            Credits:{' '}
+                            <a
+                                class="underline decoration-dotted underline-offset-2"
+                                href="https://pixabay.com/photos/fountain-pen-note-notebook-page-1851096/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Pexels
+                            </a>
+                        </small>
+                    </center>
                 </figure>
             )}
             {text && <div class="prose sm:prose-lg max-w-none" set:html={marked.parse(text)} />}
