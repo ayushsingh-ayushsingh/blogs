@@ -12,9 +12,6 @@ import StoryPreview from '../components/StoryPreview.astro';
 const posts = (await getCollection('blogs')).sort(sortItemsByDateDesc);
 const featuredPosts = posts.filter(({ data }) => data.isFeatured);
 
-const projects = (await getCollection('projects')).sort(sortItemsByDateDesc);
-const featuredProjects = projects.filter(({ data }) => data.isFeatured);
-
 const stories = (await getCollection('stories')).sort(sortItemsByDateDesc);
 const featuredStories = stories.filter(({ data }) => data.isFeatured);
 ---
@@ -34,20 +31,7 @@ const featuredStories = stories.filter(({ data }) => data.isFeatured);
             </div>
         )
     }
-    {
-        featuredProjects?.length > 0 && (
-            <div class="mb-16 sm:mb-24">
-                <h2 class="mb-12 font-serif text-xl italic sm:mb-16 sm:text-2xl">Projects</h2>
-                {featuredProjects.map((project) => (
-                    <ProjectPreview project={project} class="mb-10 sm:mb-12" headingLevel="h3" />
-                ))}
-                <div class="mt-12 sm:mt-16">
-                    <Button href="/projects">View All Projects</Button>
-                </div>
-            </div>
-        )
-    }
-    {
+   {
         featuredStories?.length > 0 && (
             <div class="mb-16 sm:mb-24">
                 <h2 class="mb-12 font-serif text-xl italic sm:mb-16 sm:text-2xl">Story</h2>
